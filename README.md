@@ -9,25 +9,20 @@ Uses CountVectorizer and cosine_similarity to measure movie similarity.
 Simple and intuitive function recommend('Movie Title') to get recommendations.
 
 🧠 How It Works
-Dataset Preprocessing
-
+Dataset Preprocessing:
 Merges multiple metadata columns like genres, keywords, cast, and overview.
-
 Cleans and processes text into a single tags field for each movie.
 
-Vectorization
-
+Vectorization:
 Uses CountVectorizer to convert text data into numerical vectors.
 
-Similarity Calculation
-
+Similarity Calculation:
 Computes cosine similarity between movie vectors.
 
-Recommendation
-
+Recommendation:
 For any given movie title, finds and returns the top 5 most similar movies.
 
-📂 Project Structure
+
 
 🛠️ Libraries Used
 pandas
