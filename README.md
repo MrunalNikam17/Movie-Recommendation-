@@ -1,34 +1,135 @@
-🎬 Movie Recommendation System
-This project recommends movies based on content similarity using Natural Language Processing (NLP) techniques. It is built using Python and focuses on analyzing movie metadata to suggest similar movies.
+🎬 Movie Recommendation System (Content-Based)
 
-🚀 Features
-Recommends movies based on title, genres, keywords, overview, cast, and crew.
+A content-based movie recommendation system built using the TMDB 5000 Movies Dataset.
+The system recommends movies similar to a given movie by analyzing genres, cast, crew (director), keywords, and overview text using NLP and cosine similarity.
 
-Uses CountVectorizer and cosine_similarity to measure movie similarity.
+🚀 Project Overview
 
-Simple and intuitive function recommend('Movie Title') to get recommendations.
+This project recommends movies based on movie metadata similarity, not user ratings.
+It uses Natural Language Processing (NLP) techniques to convert movie information into numerical vectors and then computes similarity scores.
 
-🧠 How It Works
-Dataset Preprocessing:
-Merges multiple metadata columns like genres, keywords, cast, and overview.
-Cleans and processes text into a single tags field for each movie.
+Example recommendation for “Batman Begins”:
 
-Vectorization:
-Uses CountVectorizer to convert text data into numerical vectors.
+The Dark Knight
+The Dark Knight Rises
+Batman
+Batman
+Batman & Robin
 
-Similarity Calculation:
-Computes cosine similarity between movie vectors.
+🧠 How It Works (High-Level)
 
-Recommendation:
-For any given movie title, finds and returns the top 5 most similar movies.
+Load datasets (tmdb_5000_movies.csv, tmdb_5000_credits.csv)
+
+Merge movies and credits data
+
+Extract important features
+
+Genres
+
+Keywords
+
+Top 3 Cast members
+
+Director (from crew)
+
+Movie overview
+
+Create a unified text field (tags)
+
+Text preprocessing
+
+Lowercasing
+
+Removing spaces in names
+
+Stemming (Porter Stemmer)
+
+Vectorization
+
+Bag of Words using CountVectorizer
+
+Similarity Calculation
+
+Cosine Similarity
+
+Recommendation
+
+Return top 5 most similar movies
+
+📂 Dataset Used
+
+TMDB 5000 Movie Dataset
+
+tmdb_5000_movies.csv
+
+tmdb_5000_credits.csv
+
+Each movie includes:
+
+Title
+
+Overview
+
+Genres
+
+Cast
+
+Crew
+
+Keywords
+
+🛠️ Tech Stack & Libraries
+
+Python
+
+Pandas
+
+NumPy
+
+Scikit-learn
+
+NLTK
+
+🧪 NLP Techniques Used
+
+Tokenization
+
+Stopword removal
+
+Stemming (Porter Stemmer)
+
+Bag of Words (BoW)
+
+Cosine Similarity
+
+🧩 Feature Engineering
+
+Each movie’s final tags field is created by combining:
+
+overview + keywords + cast + genres + director
 
 
+Example:
 
-🛠️ Libraries Used
-pandas
+spacewar future alienplanet samworthington jamescameron action adventure
 
-scikit-learn
+🔢 Vectorization
+CountVectorizer(
+    max_features=5000,
+    stop_words='english'
+)
 
-nltk (for optional preprocessing)
 
-numpy
+Limits vocabulary size
+
+Removes common English stopwords
+
+Converts text into numerical vectors
+
+📐 Similarity Metric
+
+Cosine Similarity
+
+Measures angle between two vectors
+
+Values range from 0 (no similarity) to 1 (identical)
