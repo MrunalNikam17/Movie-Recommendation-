@@ -1,7 +1,7 @@
 🎬 Movie Recommendation System
 
 Content-Based Recommendation using NLP & Cosine Similarity
-
+---
 📌 Overview
 
 This project implements a content-based movie recommendation system using the TMDB 5000 Movies Dataset.
