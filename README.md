@@ -1,14 +1,29 @@
-🎬 Movie Recommendation System (Content-Based)
+🎬 Movie Recommendation System
 
-A content-based movie recommendation system built using the TMDB 5000 Movies Dataset.
-The system recommends movies similar to a given movie by analyzing genres, cast, crew (director), keywords, and overview text using NLP and cosine similarity.
+Content-Based Recommendation using NLP & Cosine Similarity
 
-🚀 Project Overview
+📌 Overview
 
-This project recommends movies based on movie metadata similarity, not user ratings.
-It uses Natural Language Processing (NLP) techniques to convert movie information into numerical vectors and then computes similarity scores.
+This project implements a content-based movie recommendation system using the TMDB 5000 Movies Dataset.
+The system recommends movies similar to a given movie by analyzing movie metadata and textual content such as:
 
-Example recommendation for “Batman Begins”:
+Movie overview
+
+Genres
+
+Keywords
+
+Cast (top 3 actors)
+
+Director
+
+It uses Natural Language Processing (NLP) and cosine similarity to find and rank similar movies.
+
+🎯 Example Recommendation
+
+Input Movie: Batman Begins
+
+Recommended Movies:
 
 The Dark Knight
 The Dark Knight Rises
@@ -16,69 +31,74 @@ Batman
 Batman
 Batman & Robin
 
-🧠 How It Works (High-Level)
+🧠 Recommendation Approach
 
-Load datasets (tmdb_5000_movies.csv, tmdb_5000_credits.csv)
+This is a content-based filtering system, meaning:
 
-Merge movies and credits data
+No user ratings are required
 
-Extract important features
+Recommendations are based purely on movie similarity
+
+Ideal for cold-start problems
+
+⚙️ How the System Works
+1. Data Loading
+
+Load tmdb_5000_movies.csv
+
+Load tmdb_5000_credits.csv
+
+2. Data Merging
+
+Merge both datasets on the title column
+
+3. Feature Extraction
+
+From raw JSON-like text fields:
 
 Genres
 
 Keywords
 
-Top 3 Cast members
+Top 3 Cast Members
 
 Director (from crew)
 
-Movie overview
+4. Feature Engineering
 
-Create a unified text field (tags)
+All relevant information is combined into a single column called tags:
 
-Text preprocessing
+overview + keywords + cast + genres + director
+
+5. Text Preprocessing
 
 Lowercasing
 
-Removing spaces in names
+Removing spaces between names
+
+Tokenization
 
 Stemming (Porter Stemmer)
 
-Vectorization
+6. Vectorization
 
-Bag of Words using CountVectorizer
+Bag of Words (BoW)
 
-Similarity Calculation
+CountVectorizer with:
 
-Cosine Similarity
+max_features = 5000
 
-Recommendation
+English stopword removal
 
-Return top 5 most similar movies
+7. Similarity Calculation
 
-📂 Dataset Used
+Cosine Similarity is used to compute similarity between movies
 
-TMDB 5000 Movie Dataset
+8. Recommendation
 
-tmdb_5000_movies.csv
+Top 5 most similar movies are returned
 
-tmdb_5000_credits.csv
-
-Each movie includes:
-
-Title
-
-Overview
-
-Genres
-
-Cast
-
-Crew
-
-Keywords
-
-🛠️ Tech Stack & Libraries
+🛠️ Tech Stack
 
 Python
 
@@ -90,46 +110,24 @@ Scikit-learn
 
 NLTK
 
+📚 Dataset
+
+TMDB 5000 Movies Dataset
+
+tmdb_5000_movies.csv
+
+tmdb_5000_credits.csv
+
+Each movie contains rich metadata such as genres, cast, crew, and plot summary.
+
 🧪 NLP Techniques Used
 
 Tokenization
 
-Stopword removal
+Stopword Removal
 
-Stemming (Porter Stemmer)
+Stemming
 
 Bag of Words (BoW)
 
 Cosine Similarity
-
-🧩 Feature Engineering
-
-Each movie’s final tags field is created by combining:
-
-overview + keywords + cast + genres + director
-
-
-Example:
-
-spacewar future alienplanet samworthington jamescameron action adventure
-
-🔢 Vectorization
-CountVectorizer(
-    max_features=5000,
-    stop_words='english'
-)
-
-
-Limits vocabulary size
-
-Removes common English stopwords
-
-Converts text into numerical vectors
-
-📐 Similarity Metric
-
-Cosine Similarity
-
-Measures angle between two vectors
-
-Values range from 0 (no similarity) to 1 (identical)
